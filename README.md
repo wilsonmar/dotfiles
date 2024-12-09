@@ -8,7 +8,7 @@ These settings have been refined over several years at <a target="_blank" href="
 
 This now uses Swiss paraglider Tom Payne's <a target="_blank" href="https://github.com/twpayne/chezmoi">open-source project</a> <a target="_blank" href="https://www.chezmoi.io/#what-does-chezmoi-do">chezmoi</a>, pronounced /ʃeɪ mwa/ (shay-mwa), a French phrase for "my home".
 
-After you complete the steps below, you can legitimately add to your resume or LinkedIn profile:
+After you complete the steps below on a machine, you can legitimately add to your resume or LinkedIn profile:
 
    <ul>Configured, on new Macs, from scratch, a large set of utilities, languages tools, local AI apps,
    and access to AWS, Azure, and Google cloud services.
@@ -42,10 +42,10 @@ GITHUB_USERNAME="johndoe"
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin \
    init --apply git@github.com:$GITHUB_USERNAME/dotfiles.git
 ```
-If a repository is <strong>public</strong>, the <tt>https://</tt> protocol can be used instead:
+If a repository is <strong>public</strong>, the <tt>https://</tt> protocol can assumed for install into the default folder <tt>$HOME/.local/bin</tt>:
 ```
 GITHUB_USERNAME="johndoe"
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin \
+sh -c "$(curl -fsLS get.chezmoi.io)" -- \
    init --apply $GITHUB_USERNAME
 ```
 Use of <tt>sh</tt> means the command is portable to any machine which has the POSIX shell provided by default on popular operating systems (macOS, Linux, Windows).
