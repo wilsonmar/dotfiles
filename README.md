@@ -129,7 +129,7 @@ Tom's <tt>home/private_dot_config</tt> folder contains repository a file for eac
 * readline
 * ripgrep
 * tmux
-* wezterm
+* wezterm - A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust
 
 I add:
 * warp <em>(improved CLI)</em>
