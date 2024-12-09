@@ -3,8 +3,8 @@ url: "https://github.com/wilsonmar/dotfiles/blob/main/README.md"
 lastchange: "v001 + start again with chezmoi :README.md"
 ---
 
-<a target="_blank" href="https://github.com/wilsonmar/dotfiles/blob/main/README.md "><img align="right" width="100" height="100" alt="dotfiles.png" src="https://github.com/wilsonmar/dotfiles/blob/main/assets/README-qr.png?raw=true" />
-These settings have been refined over several years at <a target="_blank" href="https://wilsonmar.github.io/mac-setup">wilsonmar/mac-setup</a> based on afranken/dotfiles.
+<a target="_blank" href="https://github.com/wilsonmar/dotfiles/blob/main/README.md "><img align="right" width="100" height="100" alt="dotfiles.png" src="https://github.com/wilsonmar/dotfiles/blob/main/assets/readme-qr.png?raw=true" /></a>
+These settings have been refined over several years at <a target="_blank" href="https://wilsonmar.github.io/mac-setup">wilsonmar/mac-setup</a> and from a fork of afranken/dotfiles.
 
 This now uses Swiss paraglider Tom Payne's <a target="_blank" href="https://github.com/twpayne/chezmoi">open-source project</a> <a target="_blank" href="https://www.chezmoi.io/#what-does-chezmoi-do">chezmoi</a>, pronounced /ʃeɪ mwa/ (shay-mwa), a French phrase for "my home".
 
