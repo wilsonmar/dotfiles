@@ -1,0 +1,32 @@
+HashKnownHosts no
+
+{{- if eq .chezmoi.os "darwin" }}
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+{{- end }}
+
+Host fedora
+  HostName fedora
+
+Host github.com
+  User git
+
+Host legion
+  ForwardAgent yes
+  User twp
+
+Host macbook-air-m3
+  User twp
+
+Host ubuntu
+  HostName ubuntu
+
+Host windows
+  HostName windows
+  User twpay
+
+{{- if .flarm }}
+{{ onepasswordRead "op://FLARM/SSH Config/notesPlain" .onepasswordAccount }}
+{{- end }}

@@ -1,0 +1,69 @@
+{{ if eq .osid "linux-debian" "linux-raspbian" "linux-ubuntu" -}}
+
+{{ $packages := list
+     "bat"
+     "build-essential"
+     "curl"
+     "fd-find"
+     "fzf"
+     "git"
+     "git-lfs"
+     "jq"
+     "libfuse2"
+     "openssh-server"
+     "ripgrep"
+     "shellcheck"
+     "units"
+     "zsh" -}}
+{{ $snaps := list -}}
+{{ $classicSnaps := list -}}
+
+{{ if eq .osid "linux-ubuntu" -}}
+{{   $packages = mustAppend $packages "btop" -}}
+{{ end -}}
+
+{{ if not .headless -}}
+{{   $packages = mustAppend $packages "xclip" -}}
+{{   $classicSnaps = mustAppend $classicSnaps "code" -}}
+{{ end -}}
+
+{{ if .personal -}}
+{{   $packages = mustAppend $packages "musl-tools" -}}
+{{   $classicSnaps = concat $classicSnaps (list "goreleaser" "snapcraft") -}}
+{{ end -}}
+
+{{ if eq .osid "linux-ubuntu" -}}
+{{   $packages = concat $packages (list "gdal-bin" "libgeos-dev" "libproj-dev" "postgis" "postgresql") -}}
+{{ end -}}
+
+{{ if and (eq .osid "linux-ubuntu") (not .headless) -}}
+{{   $packages = concat $packages (list "qgis") -}}
+{{ end -}}
+
+{{ if eq .hostname "legion" -}}
+{{   $packages = concat $packages (list "clang" "clang-format" "libstdc++-12-dev" "ninja-build" "pgformatter" "python3-dev" "python3-pip" "python3-venv") -}}
+{{   $snaps = mustAppend $snaps "dbeaver-ce" -}}
+{{ end -}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{   $sudo = "" -}}
+{{ end -}}
+
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ $packages | join " " }}
+
+{{ if lookPath "snap" }}
+{{   range $snaps }}
+( snap info {{ . }} | grep -q ^installed: ) || {{ $sudo }}snap install {{ . }}
+{{   end }}
+{{   range $classicSnaps }}
+( snap info {{ . }} | grep -q ^installed: ) || {{ $sudo }}snap install --classic {{ . }}
+{{   end }}
+{{ end }}
+
+{{ end -}}
