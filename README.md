@@ -1,36 +1,27 @@
 ---
 url: "https://github.com/wilsonmar/dotfiles/blob/main/README.md"
-lastchange: "v003 + struc :README.md"
+lastchange: "v005 + mac-setup flows :README.md"
 ---
 
 <a target="_blank" href="https://github.com/wilsonmar/dotfiles/blob/main/README.md"><img align="right" width="100" height="100" alt="dotfiles.png" src="https://github.com/wilsonmar/dotfiles/blob/main/assets/readme-qr.png?raw=true" /></a>
 
-After you complete the steps below on a machine, you can legitimately add to your resume or LinkedIn profile:
+WHY? This was created so that you can legitimately add to your resume and LinkedIn profile:
 
    <ul>Configured, on new Macs, from scratch, a large set of utilities, languages tools, local AI apps,
    and access to AWS, Azure, and Google cloud services.
    The custom automation reduces onboarding errors and time
    <strong>from days to less than an hour</strong>.
    Documentation of steps were validated by others.
-   With a common set of tools, the entire team can now pair program together efficiently.
-   This makes it easy to achieve cybersecurity directives to keep all software up-to-date frequently.
+   With a common set of tools, teams can now pair-program together efficiently.
+   This makes it easy to achieve cybersecurity directives about keeping all software up-to-date frequently.
    </ul>
-
-Chezmoi has several advantages:
-   * <a href="#Conventions">A pattern (naming conventions) for folders and files to specify configuration settings</a>.
-   * <a href="#ChezmoiCLI">A simple CLI utility that works like <tt>git</tt></a>.
-   * <a href="#TemplateLanguage">A template language</a> (explained <a target="_blank" href="https://budimanjojo.com/2021/12/13/managing-dotfiles-with-chezmoi/">here</a>)
-   * <a href="#SingleCurlCommand">A single curl command to download, clone, and update configuration settings from a GitHub repo</a> (thanks to its use of Golang, which does not needing a compiler)
-
-Not:
-   * Within the "assets" folder are binary png images, icons, and other files used to explain the automation process.
 
 
 ## Customize the Base dotfiles
 
 This <a target="_blank" href="https://github.com/wilsonmar/dotfiles">wilsonmar/dotfiles repo</a> currently makes use of <a target="_blank" href="https://github.com/twpayne/chezmoi">open-source project</a> named <a target="_blank" href="https://www.chezmoi.io/#what-does-chezmoi-do">chezmoi</a> (pronounced /ʃeɪ mwa/ (shay-mwa), a French phrase for "my home"). Chozmoi was created in 2021 by Zurich-based paraglider Tom Payne. Like many others, I coverted to Tom's Chezmoi from the custom CLI shell scripts I refined over several years at <a target="_blank" href="https://wilsonmar.github.io/mac-setup">wilsonmar/mac-setup</a>, as described at <a target="_blank" href="https://wilsonmar.github.io/mac-setup">https://wilsonmar.github.io/mac-setup</a>. My approach used a clumsy way to initiate utilities on a new macOS machine:
 
-<img alt="mac-setup.png" src="https://res.cloudinary.com/dcajqrroq/image/upload/v1733251673/mac-setup-1_qevle0.png" />
+<img alt="chezmoi-mac-setup-1710x780.png" src="https://res.cloudinary.com/dcajqrroq/image/upload/v1734371032/chezmoi-mac-setup-1710x780_vsp9sv.png" />
 
 Both approaches makes use of the default internet browser app (Safari), and type in the URL of the sample dotfiles repository in GitHub to <strong>fork</strong> it under the GitHub account of the new user.
 The browser can be used to <strong>edit (customize) the sample install files</strong>.
@@ -41,7 +32,16 @@ Open the Finder app to Navigate to the "Downloads" folder, then drag-and-drop cu
 
 <hr />
 
-However, use of Chezmoi similifies the above process by solving the problem of what to execute first:
+## Advantages of Chezmoi
+
+Use of Chezmoi similifies the above process solves several problems.
+Chezmoi has several advantages:
+
+   * More people know about how Chozmoi works than my mac-setup repo.
+   * <a href="#Conventions">A pattern (naming conventions) for folders and files to specify configuration settings</a>.
+   * <a href="#ChezmoiCLI">A simple CLI utility that works like <tt>git</tt></a>.
+   * <a href="#TemplateLanguage">A template language</a> (explained <a target="_blank" href="https://budimanjojo.com/2021/12/13/managing-dotfiles-with-chezmoi/">here</a>)
+   * <a href="#SingleCurlCommand">A single curl command to download, clone, and update configuration settings from a GitHub repo</a> (thanks to its use of Golang, which does not need dependencies to run).
 
 With Chezmoi, a user simply opens the Terminal app and executes the following command:
 ```
@@ -237,7 +237,7 @@ Chezmoi has 4 areas where it stores data: "Remote repo", "Working copy", "Home d
    * The <tt><strong>apply</strong></tt> parameter copies the remote repo into the "Home directory" area.
    * The <tt><strong>apply</strong></tt> parameter without the remote repo copies from "Working copy" to "Home directory".
 
-<a target="_blank" href="https://www.chezmoi.io/user-guide/setup/#use-a-hosted-repo-to-manage-your-dotfiles-across-multiple-machines"><img alt="chezmoi-git-1686x465.png" src="https://res.cloudinary.com/dcajqrroq/image/upload/v1734148508/chezmoi-git-1686x465_h0yowe.png" /></a>
+<a target="_blank" href="https://www.chezmoi.io/user-guide/setup/#use-a-hosted-repo-to-manage-your-dotfiles-across-multiple-machines"><img alt="chezmoi-git-1686x465.png" src="https://res.cloudinary.com/dcajqrroq/image/upload/v1734368291/chezmoi-git-cmds-1691x517_mmaciq.png" /></a>
 
 The <tt><strong>-b</strong></tt> parameter tells the script to install in a folder other than the default <tt>~/.local/bin</tt> <tt>~/bin</tt> which does not require root (sudo) access and the need to type in a password.
 
@@ -250,6 +250,7 @@ So we download that as the starting point to adapt it for our own use.
    $env:Path += ";$env:UserProfile\bin"
    Set-Alias -Name g -Value git
    ```
+
 ### Operating Systems
 
 In folder <tt>home/.chezmoiscripts</tt> is a file for each operating system:
